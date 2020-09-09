@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "list-facil-web"
+    }
+  },
+  "defaultProject": "list-facil-web",
+  "cli": {
+    "analytics": "b5b7242a-5453-4789-b455-22b32bd02e3a"
+  }
 }
