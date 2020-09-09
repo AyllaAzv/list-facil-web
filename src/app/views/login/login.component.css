@@ -23,56 +23,32 @@ p {
     left: 0px;
     top: 0px;
     background: url('/../assets/images/login-textura.png');
-}
-
-.image01 {
-    position: absolute;
-    width: 319.63px;
-    height: 337.72px;
-    top: 25%;
-    left: 15%;
-}
-
-.image02 {
-    position: absolute;
-    width: 183.75px;
-    height: 329.85px;
-    top: 25%;
-    right: 18%;
-}
-
-.image03 {
-    position: absolute;
-    width: 197.26px;
-    height: 339.74px;
-    top: 25%;
-    right: 0;
-}
-
-.container {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center
+    align-items: center;
 }
 
-.container .box {
+.content-img img {
+    height: 85%;
+}
+
+.box {
     position: absolute;
-    width: 23%;
-    height: 70%;
+    height: auto;
+    width: 28%;
     background: #FFFFFF;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
     border-radius: 58px;
     padding: 48px;
 }
 
-.container .box .logo {
+.box .logo {
     height: 40px;
 }
 
-.container .box .titulo {
+.box .titulo {
     font-style: normal;
     font-weight: normal;
     margin-top: 10px;
@@ -80,7 +56,7 @@ p {
     line-height: 38px;
 }
 
-.container .box .container-link {
+.box .container-link {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -89,7 +65,7 @@ p {
     align-content: stretch;
 }
 
-.container .box .container-link .text {
+.box .container-link .text {
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -113,7 +89,7 @@ p {
     color: #5E5E5E;
 }
 
-.container .box .container-senha {
+.box .container-senha {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -130,4 +106,98 @@ input {
     height: 50px;
     border-radius: 8px;
     margin-top: 6px;
+}
+
+.container-checkbox {
+    margin-top: 6px;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+.container-checkbox input {
+    height: 16px;
+    width: 16px;
+    border: 1px solid rgba(196, 196, 196, 0.8);
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.container-checkbox label {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 26px;
+    margin-left: 5px;
+    color: #1C1C1C;
+}
+
+.entrar {
+    width: 100%;
+    height: 50px;
+    background: #6D96FF;
+    border-radius: 8px;
+    border: 0;
+    text-decoration: none;
+    margin-top: 8px;
+    /* font */
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+.separador {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.linha {
+    width: 100%;
+    height: 0px;
+    /* Gray 4 */
+    border: 0.8px solid #BDBDBD;
+}
+
+.text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    /* Gray 4 */
+    color: #BDBDBD;
+}
+
+.google {
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    border: 1px solid #8B8BFB;
+    box-sizing: border-box;
+    border-radius: 8px;
+    text-decoration: none;
+    /* font */
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #8B8BFB;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.google img {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
 }
