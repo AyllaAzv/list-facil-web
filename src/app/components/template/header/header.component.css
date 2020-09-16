@@ -1,0 +1,72 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding-left: 10%;
+    padding-right: 10%;
+    border-bottom: 1px solid #F2F2F2;
+}
+
+.header .container-info {
+    display: flex;
+    align-items: center;
+    width: 90%;
+}
+
+.header .container-info a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header .container-info .logo {
+    max-height: 32px;
+}
+
+.header .container-info .input-pesquisa {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 40px;
+    background: #F4F4F4;
+    border-radius: 10px;
+    border-color: #F4F4F4;
+    border-width: 0px;
+    margin-left: 30px;
+    padding: 5px;
+}
+
+.header .container-info .input-pesquisa input {
+    background-color: transparent;
+    border-width: 0px;
+    width: 100%;
+    font-family: 'Prompt', sans-serif;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.header .container-info .input-pesquisa .mat-icon {
+    color: #6c757d;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header .container-user {
+    display: flex;
+    align-items: center;
+}
+
+.header .container-user span {
+    font-family: 'Prompt', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    margin-right: 10px;
+}
+
+.header .container-user img {
+    width: 40px;
+    height: 40px;
+}

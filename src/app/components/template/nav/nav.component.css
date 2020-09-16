@@ -1,0 +1,53 @@
+.sidenav {
+    background-color: #fff;
+    width: 20%;
+    padding-left: 6%;
+}
+
+.sidenav .container-button {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+.sidenav .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 48px;
+    height: 48px;
+    background: #6DC68A;
+}
+
+.sidenav .button a i {
+    display: flex;
+    color: #fff;
+    font-size: 40px;
+    padding-right: 0px;
+}
+
+.sidenav a {
+    color: #717171;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 27px;
+    font-family: 'Prompt', sans-serif;
+}
+
+.sidenav i {
+    padding-right: 5px;
+    font-size: 20px;
+}
+
+.content {
+    padding: 16px;
+    background-color: white;
+}
+
+.mat-drawer-side {
+    border-right: 1px solid #F2F2F2;
+}
