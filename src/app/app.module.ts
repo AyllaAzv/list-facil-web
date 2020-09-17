@@ -1,3 +1,4 @@
+import { ConfiguracoesComponent } from './views/configuracoes/configuracoes.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,6 +16,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ListasComponent } from './views/listas/listas.component';
+import { CategoriasComponent } from './views/categorias/categorias.component';
+import { FavoritosComponent } from './views/favoritos/favoritos.component';
+import { GastosComponent } from './views/gastos/gastos.component';
+import { ArquivoComponent } from './views/arquivo/arquivo.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HomeComponent,
     HeaderComponent,
     NavComponent,
+    ListasComponent,
+    CategoriasComponent,
+    FavoritosComponent,
+    GastosComponent,
+    ArquivoComponent,
+    ConfiguracoesComponent,
   ],
   imports: [
     BrowserModule,
