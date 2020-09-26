@@ -1,3 +1,4 @@
+import { ListaComponent } from './views/lista/lista.component';
 import { ConfiguracoesComponent } from './views/configuracoes/configuracoes.component';
 import { ListasComponent } from './views/listas/listas.component';
 import { ArquivoComponent } from './views/arquivo/arquivo.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'listas',
         component: ListasComponent
+      },
+      {
+        path: 'lista',
+        component: ListaComponent
       },
       {
         path: 'categorias',

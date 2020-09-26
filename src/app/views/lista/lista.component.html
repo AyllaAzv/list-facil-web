@@ -1,0 +1,68 @@
+<div class="box">
+    <div class="header">
+        <a>
+            <i class="material-icons">
+                cancel
+            </i>
+        </a>
+    </div>
+    <div class="row content">
+        <div class="col-8">
+            <mat-form-field>
+                <mat-label>Título</mat-label>
+                <input type="text" matInput placeholder="Informe o título" [(ngModel)]="titulo">
+            </mat-form-field>
+
+            <div class="row" *ngFor="let item of itens">
+                <div class="col-1">
+                    <mat-checkbox [(ngModel)]="item.comprado"></mat-checkbox>
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="Item" matInput [(ngModel)]="item.nome">
+                </div>
+                <div class="col-2">
+                    <input type="text" placeholder="Qtd" matInput [(ngModel)]="item.quantidade">
+                </div>
+                <div class="col-2">
+                    <input type="text" placeholder="Valor" matInput [(ngModel)]="item.preco">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-1">
+                    <mat-checkbox [(ngModel)]="itemComprado"> </mat-checkbox>
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="Item" matInput (keypress)="adicionar($event)" [(ngModel)]="itemNome">
+                </div>
+                <div class="col-2">
+                    <input type="text" placeholder="Qtd" matInput (keypress)="adicionar($event)" [(ngModel)]="itemQtd">
+                </div>
+                <div class="col-2">
+                    <input type="text" placeholder="Valor" matInput (keypress)="adicionar($event)" [(ngModel)]="itemValor">
+                </div>
+            </div>
+        </div>
+        <div class="col-4 valor-total">
+            <span>
+                R$ 0,00
+            </span>
+        </div>
+    </div>
+    <div class="options">
+        <div class="links">
+            <a>
+                <i class="material-icons">
+                    delete
+                </i>
+            </a>
+            <a>
+                <i class="material-icons">
+                    share
+                </i>
+            </a>
+        </div>
+
+        <button (click)="concluir()">CONCLUIR</button>
+    </div>
+</div>

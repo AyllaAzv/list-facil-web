@@ -14,13 +14,19 @@ import { NavComponent } from './components/template/nav/nav.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 import { ListasComponent } from './views/listas/listas.component';
 import { CategoriasComponent } from './views/categorias/categorias.component';
 import { FavoritosComponent } from './views/favoritos/favoritos.component';
 import { GastosComponent } from './views/gastos/gastos.component';
 import { ArquivoComponent } from './views/arquivo/arquivo.component';
+import { ListaComponent } from './views/lista/lista.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,7 @@ import { ArquivoComponent } from './views/arquivo/arquivo.component';
     GastosComponent,
     ArquivoComponent,
     ConfiguracoesComponent,
+    ListaComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,11 @@ import { ArquivoComponent } from './views/arquivo/arquivo.component';
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
