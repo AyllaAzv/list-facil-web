@@ -42,6 +42,13 @@
 
 .mat-form-field {
     width: 100%;
+    line-height: 1.5;
+}
+
+.mat-option a {
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+    color: #6DC68A;
 }
 
 .options {

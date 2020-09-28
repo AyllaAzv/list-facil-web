@@ -1,3 +1,4 @@
+import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { ListaComponent } from './views/lista/lista.component';
 import { ConfiguracoesComponent } from './views/configuracoes/configuracoes.component';
 import { ListasComponent } from './views/listas/listas.component';
@@ -54,6 +55,10 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  {
+    path: 'cadastro',
+    component: CadastroComponent,
+  }
 ];
 
 @NgModule({

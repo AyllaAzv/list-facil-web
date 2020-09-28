@@ -17,7 +17,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -27,6 +28,7 @@ import { FavoritosComponent } from './views/favoritos/favoritos.component';
 import { GastosComponent } from './views/gastos/gastos.component';
 import { ArquivoComponent } from './views/arquivo/arquivo.component';
 import { ListaComponent } from './views/lista/lista.component';
+import { CadastroComponent } from './views/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { ListaComponent } from './views/lista/lista.component';
     ArquivoComponent,
     ConfiguracoesComponent,
     ListaComponent,
+    CadastroComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { ListaComponent } from './views/lista/lista.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
