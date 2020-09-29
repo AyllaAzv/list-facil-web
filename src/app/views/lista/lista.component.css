@@ -1,6 +1,35 @@
+@media (max-width: 575.98px) {
+    .box {
+        width: 100%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .box {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .box {
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .box {
+        width: 85%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .box {
+        width: 75%;
+    }
+}
+
 .box {
     height: auto;
-    width: 60%;
     background: #FFFFFF;
     border: 2px solid rgba(149, 149, 149, 0.35);
     box-sizing: border-box;
@@ -76,3 +105,13 @@
     color: #717171;
     font-size: 20px;
 }
+
+/*COR DO MAT-FORMFIELD*/
+
+::ng-deep .mat-form-field-underline .mat-form-field-ripple {
+    background-color: #6DC68A !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label  {
+    color: blue !important;
+  }

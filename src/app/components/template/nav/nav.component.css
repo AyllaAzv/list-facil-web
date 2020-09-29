@@ -1,6 +1,35 @@
+@media (max-width: 575.98px) {
+    .sidenav {
+        width: 15%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .sidenav {
+        width: 25%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .sidenav {
+        width: 25%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .sidenav {
+        width: 20%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sidenav {
+        width: 20%;
+    }
+}
+
 .sidenav {
     background-color: #fff;
-    width: 20%;
     padding-left: 6%;
 }
 
@@ -50,4 +79,14 @@
 
 .mat-drawer-side {
     border-right: 1px solid #F2F2F2;
+}
+
+.navigation {
+    background: #6DC68A;
+    border-radius: 20px 0px 0px 20px;
+    color: #fff !important;
+}
+
+.navigation:hover {
+    background: #717171;
 }
