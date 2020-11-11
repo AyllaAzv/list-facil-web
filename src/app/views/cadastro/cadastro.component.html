@@ -22,27 +22,48 @@
         <div class="box">
             <img src="assets/images/logo.png" alt="ListFácil" class="logo">
 
-            <br />  <br />
+            <br /> <br />
+            <form [formGroup]="form">
+                <p class="text-input">Nome</p>
+                <input required formControlName="nome">
 
-            <p class="text-input">Nome</p>
-            <input required>
+                <span class="text-danger" *ngIf="form.controls.nome.touched && form.controls.nome.errors?.required">
+                    Informe seu nome
+                </span>
 
-            <br />  <br />
+                <br /> <br />
 
-            <p class="text-input">E-mail</p>
-            <input required>
+                <p class="text-input">E-mail</p>
+                <input required formControlName="email">
 
-            <br />  <br />
+                <span class="text-danger" *ngIf="form.controls.email.touched && form.controls.email.errors?.required">
+                    Informe seu e-mail
+                </span>
 
-            <p class="text-input">Senha</p>
-            <input type="password">
+                <span class="text-danger" *ngIf="form.controls.email.touched && form.controls.email.errors?.email">
+                    E-mail inválido
+                </span>
+
+                <br /> <br />
+
+                <p class="text-input">Senha</p>
+                <input type="password" formControlName="senha">
+
+                <span class="text-danger" *ngIf="form.controls.senha.touched && form.controls.senha.errors?.required">
+                    Informe sua senha
+                </span>
+
+                <span class="text-danger" *ngIf="form.controls.senha.touched && form.controls.senha.errors?.minlength">
+                    Sua senha deve ter no mínimo 6 caracteres
+                </span>
+            </form>
 
             <div class="container-checkbox">
-                <input type="checkbox" id="lembrar">
-                <label for="lembrar">Aceitar os<a href="" class="link">termos de uso</a>.</label>
+                <input type="checkbox" id="termos" [(ngModel)]="aceitouTermos">
+                <label for="termos">Aceitar os<a href="" class="link">termos de uso</a>.</label>
             </div>
 
-            <button class="criar">Criar</button>
+            <button class="criar" (click)="onSubmit()">Criar</button>
 
             <div class="row separador">
                 <div class="col-sm align-self-center" style="padding-right: 5px;">

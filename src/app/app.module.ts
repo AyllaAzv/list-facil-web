@@ -19,6 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -29,6 +30,13 @@ import { GastosComponent } from './views/gastos/gastos.component';
 import { ArquivoComponent } from './views/arquivo/arquivo.component';
 import { ListaComponent } from './views/lista/lista.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
+
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+
+import { HttpClientModule } from "@angular/common/http";
+
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -57,9 +65,13 @@ import { CadastroComponent } from './views/cadastro/cadastro.component';
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
