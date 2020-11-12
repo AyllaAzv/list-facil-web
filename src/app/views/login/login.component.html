@@ -33,21 +33,25 @@
 
             <br>
 
-            <p class="text-input">E-mail</p>
-            <input required>
+            <form [formGroup]="form">
 
-            <div class="container-senha">
-                <p class="text-input">Senha</p>
-                <a href="" class="link">Esqueceu a senha?</a>
-            </div>
-            <input type="password">
+                <p class="text-input">E-mail</p>
+                <input required formControlName="email">
+
+                <div class="container-senha">
+                    <p class="text-input">Senha</p>
+                    <a href="" class="link">Esqueceu a senha?</a>
+                </div>
+                <input type="password" formControlName="senha">
+
+            </form>
 
             <div class="container-checkbox">
                 <input type="checkbox" id="lembrar">
                 <label for="lembrar">Lembrar-me da próxima vez.</label>
             </div>
 
-            <button class="entrar" (click)="goToHome()">Entrar</button>
+            <button class="entrar" (click)="onSubmit()">Entrar</button>
 
             <div class="row separador">
                 <div class="col-sm align-self-center" style="padding-right: 5px;">
@@ -63,7 +67,7 @@
             </div>
 
             <button class="google">
-                <img src="assets/images/google-icon.png" alt="icon-google">
+                <img src="assets/images/google-icon.png" alt="icon-google" (click)="onClickLoginGoogle()">
                 Google
             </button>
         </div>

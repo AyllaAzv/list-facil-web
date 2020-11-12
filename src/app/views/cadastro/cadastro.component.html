@@ -60,7 +60,7 @@
 
             <div class="container-checkbox">
                 <input type="checkbox" id="termos" [(ngModel)]="aceitouTermos">
-                <label for="termos">Aceitar os<a href="" class="link">termos de uso</a>.</label>
+                <label for="termos">Aceitar os<a class="link" (click)="openDialog()">termos de uso</a>.</label>
             </div>
 
             <button class="criar" (click)="onSubmit()">Criar</button>
@@ -79,7 +79,7 @@
             </div>
 
             <button class="google">
-                <img src="assets/images/google-icon.png" alt="icon-google">
+                <img src="assets/images/google-icon.png" alt="icon-google" (click)="onClickLoginGoogle()">
                 Google
             </button>
         </div>
