@@ -5,7 +5,7 @@
                 <img class="logo" src="assets/images/logo.png" alt="logo">
             </a>
         </span>
-    
+
         <div class="input-pesquisa">
             <mat-icon>search</mat-icon>
             <input type="text" placeholder="Pesquisar">
@@ -14,10 +14,13 @@
 
     <div class="container-user">
         <span>
-            Nícolas
+            {{ usuario.nome }}
         </span>
-        <img src="assets/images/user.png" alt="User photo">
+
+        <img src="https://cdn1.iconfinder.com/data/icons/flat-business-icons/128/user-256.png" alt="User photo"
+            *ngIf="usuario.foto == undefined">
     </div>
+
 
 
 </mat-toolbar>

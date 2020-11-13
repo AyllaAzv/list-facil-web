@@ -14,7 +14,7 @@ import { LoginComponent } from './views/login/login.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home/listas',
+    redirectTo: 'login',
     pathMatch: 'full' 
   },
   {

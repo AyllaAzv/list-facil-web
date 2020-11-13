@@ -17,13 +17,13 @@ export class CadastroComponent implements OnInit {
   aceitouTermos: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private usuarioService: UsuarioService, 
+    private formBuilder: FormBuilder,
+    private usuarioService: UsuarioService,
     private loginService: LoginService,
-    private router: Router, 
-    private snackBar: MatSnackBar, 
+    private router: Router,
+    private snackBar: MatSnackBar,
     private dialog: MatDialog
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.criaForm();
@@ -35,8 +35,15 @@ export class CadastroComponent implements OnInit {
         this.showMessage("Conta criada com sucesso!");
         this.router.navigate(['/login']);
       }).catch((e) => {
-        console.log(e);
-        this.showMessage("Erro ao criar conta!");
+        if (e.code == "auth/email-already-in-use") {
+          this.showMessage("O endereço de e-mail já está sendo usado por outra conta!")
+        }
+        else if (e.code == "auth/invalid-email") {
+          this.showMessage("Endereço de e-mail incorreto!")
+        }
+        else {
+          this.showMessage("Erro ao criar conta!");
+        }
       });
     } else if (this.form.valid && !this.aceitouTermos) {
       this.showMessage("Aceite os termos para continuar!");
@@ -47,9 +54,11 @@ export class CadastroComponent implements OnInit {
 
   onClickLoginGoogle() {
     this.loginService.authenticateWithGoogle().then((result) => {
-      console.log(result);
       this.showMessage("Login efetuado com sucesso!");
       this.router.navigate(['/home/listas']);
+    }).catch((e) => {
+      console.log(e);
+      this.showMessage("Ocorreu um erro!");
     });
   }
 
