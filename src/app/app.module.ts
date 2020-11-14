@@ -32,15 +32,18 @@ import { GastosComponent } from './views/gastos/gastos.component';
 import { ArquivoComponent } from './views/arquivo/arquivo.component';
 import { ListaComponent } from './views/lista/lista.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { DialogTermosComponent } from './components/fragments/dialog-termos/dialog-termos.component';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { HttpClientModule } from "@angular/common/http";
 
 import { environment } from "../environments/environment";
-import { DialogComponent } from './components/fragments/dialog/dialog.component';
+import { DialogAddCategoriaComponent } from './components/fragments/dialog-add-categoria/dialog-add-categoria.component';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +60,8 @@ import { DialogComponent } from './components/fragments/dialog/dialog.component'
     ConfiguracoesComponent,
     ListaComponent,
     CadastroComponent,
-    DialogComponent,
+    DialogTermosComponent,
+    DialogAddCategoriaComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +83,7 @@ import { DialogComponent } from './components/fragments/dialog/dialog.component'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
     HttpClientModule,
   ],
   providers: [],

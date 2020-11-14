@@ -1,0 +1,6 @@
+.container .container-fab {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    background: red;
+}

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Nova Categoria</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+        </mat-form-field>
+        <br />
+        <span class="text-danger" style="font-size: 12px;" *ngIf="form.controls.nome.touched && form.controls.nome.errors?.required">
+            Informe o nome da categoria
+        </span>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Fechar</button>
+    <button mat-button cdkFocusInitial mat-dialog-close (click)="onSubmit()">Salvar</button>
+</div>

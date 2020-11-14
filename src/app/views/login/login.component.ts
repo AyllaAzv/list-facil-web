@@ -1,5 +1,3 @@
-import { Usuario } from './../../models/usuario';
-import { SessionStorageService } from './../../services/session-storage.service';
 import { LocalStorageService } from './../../services/local-storage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from './../../services/login.service';
@@ -22,15 +20,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private snackBar: MatSnackBar,
-    private localStorageService: LocalStorageService,
-    private sessionStorageService: SessionStorageService
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
-    var userLocal = this.localStorageService.get("usuario");
-    var userSession = this.sessionStorageService.get("usuario");
+    var usuarioLocal = this.localStorageService.get("usuario");
 
-    if (userLocal != null || userSession != null) {
+    if (usuarioLocal != null) {
       this.router.navigate(['/home/listas']);
     }
     this.criaForm();
@@ -50,12 +46,11 @@ export class LoginComponent implements OnInit {
         this.usuario.foto = result.user.photoURL;
 
         this.localStorageService.clear();
-        this.sessionStorageService.clear();
 
         if (this.lembrar) {
           this.localStorageService.set("usuario", this.usuario);
         } else {
-          this.sessionStorageService.set("usuario", this.usuario);
+          this.localStorageService.set("usuario", this.usuario);
         }
 
         this.router.navigate(['/home/listas']);

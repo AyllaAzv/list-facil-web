@@ -1,6 +1,5 @@
-import { Usuario } from './usuario';
 export interface Etiqueta {
-    id: number;
-    nome: String;
-    usuario: Usuario;
+    id: string;
+    nome: string;
+    usuario_id: string;
 }

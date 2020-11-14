@@ -19,6 +19,9 @@
 
         <img src="https://cdn1.iconfinder.com/data/icons/flat-business-icons/128/user-256.png" alt="User photo"
             *ngIf="usuario.foto == undefined">
+
+            <img src="{{ usuario.foto }}" alt="User photo"
+            *ngIf="usuario.foto != undefined">
     </div>
 
 

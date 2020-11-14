@@ -1,3 +1,4 @@
+import { DialogTermosComponent } from './../../components/fragments/dialog-termos/dialog-termos.component';
 import { LoginService } from './../../services/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -5,7 +6,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from './../../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { DialogComponent } from 'src/app/components/fragments/dialog/dialog.component';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,6 +16,7 @@ import { DialogComponent } from 'src/app/components/fragments/dialog/dialog.comp
 export class CadastroComponent implements OnInit {
   form: FormGroup;
   aceitouTermos: boolean = false;
+  usuario: any = {};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,7 +24,8 @@ export class CadastroComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private localStorageService: LocalStorageService,
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +57,15 @@ export class CadastroComponent implements OnInit {
 
   onClickLoginGoogle() {
     this.loginService.authenticateWithGoogle().then((result) => {
+      this.usuario.id = result.user.uid;
+      this.usuario.nome = result.user.displayName;
+      this.usuario.email = result.user.email;
+      this.usuario.foto = result.user.photoURL;
+
+      this.localStorageService.clear();
+
+      this.localStorageService.set("usuario", this.usuario);
+
       this.showMessage("Login efetuado com sucesso!");
       this.router.navigate(['/home/listas']);
     }).catch((e) => {
@@ -79,6 +91,6 @@ export class CadastroComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(DialogComponent);
+    this.dialog.open(DialogTermosComponent);
   }
 }

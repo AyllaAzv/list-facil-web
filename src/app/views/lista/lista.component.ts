@@ -1,5 +1,11 @@
+import { DialogAddCategoriaComponent } from './../../components/fragments/dialog-add-categoria/dialog-add-categoria.component';
+import { MatDialog } from '@angular/material/dialog';
+import { EtiquetaService } from './../../services/etiqueta.service';
+import { HeaderService } from './../../services/header.service';
+import { CategoriaService } from './../../services/categoria.service';
 import { Item } from './../../models/item';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista',
@@ -14,10 +20,43 @@ export class ListaComponent implements OnInit {
   itemNome: String = "";
   itemValor: number;
   itemQtd: number;
+  categorias: any;
+  etiquetas: any;
 
-  constructor() { }
+  constructor(
+    private categoriaService: CategoriaService, 
+    private etiquetaService: EtiquetaService, 
+    private headerService: HeaderService,
+    private dialog: MatDialog,
+    ) { }
 
   ngOnInit(): void {
+    this.listaCategorias();
+    this.listaEtiquetas();
+  }
+
+  listaCategorias() {
+    this.categoriaService.findAll(this.headerService.usuario.id).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.categorias = data;
+    });
+  }
+
+  listaEtiquetas() {
+    this.etiquetaService.findAll(this.headerService.usuario.id).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.etiquetas = data;
+    });
   }
 
   adicionar(event: any) {
@@ -27,7 +66,7 @@ export class ListaComponent implements OnInit {
         comprado: this.itemComprado,
         preco: this.itemValor,
         imagem: "",
-        quantidade:  this.itemQtd
+        quantidade: this.itemQtd
       }
 
       this.itens.push(this.item);
@@ -55,5 +94,9 @@ export class ListaComponent implements OnInit {
       imagem: "",
       quantidade: this.itemQtd
     }
+  }
+
+  openDialogCategoria() {
+    this.dialog.open(DialogAddCategoriaComponent);
   }
 }

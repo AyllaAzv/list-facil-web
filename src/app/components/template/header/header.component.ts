@@ -1,5 +1,4 @@
-import { SessionStorageService } from './../../../services/session-storage.service';
-import { LocalStorageService } from './../../../services/local-storage.service';
+import { HeaderService } from './../../../services/header.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,17 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   usuario: any = {};
 
-  constructor(private localStorageService: LocalStorageService, private sesseionStorageService: SessionStorageService) { }
+  constructor(private headerService: HeaderService) { }
 
   ngOnInit(): void {
-    var userLocal = this.localStorageService.get("usuario");
-    var userSession = this.sesseionStorageService.get("usuario");
+    var usuarioLocal = this.headerService.usuario;
 
-    if(userLocal != null) {
-      this.usuario = userLocal;
-    } else if(userSession != null) {
-      this.usuario = userSession;
-    }
+    if(usuarioLocal != null) {
+      this.usuario = usuarioLocal;
+    } 
   }
 
 }
