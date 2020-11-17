@@ -43,6 +43,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { environment } from "../environments/environment";
 import { DialogAddCategoriaComponent } from './components/fragments/dialog-add-categoria/dialog-add-categoria.component';
+import { DialogAddEtiquetaComponent } from './components/fragments/dialog-add-etiqueta/dialog-add-etiqueta.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { DialogAddCategoriaComponent } from './components/fragments/dialog-add-c
     CadastroComponent,
     DialogTermosComponent,
     DialogAddCategoriaComponent,
+    DialogAddEtiquetaComponent,
   ],
   imports: [
     BrowserModule,

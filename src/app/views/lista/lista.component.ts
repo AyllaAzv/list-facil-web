@@ -1,3 +1,4 @@
+import { DialogAddEtiquetaComponent } from './../../components/fragments/dialog-add-etiqueta/dialog-add-etiqueta.component';
 import { DialogAddCategoriaComponent } from './../../components/fragments/dialog-add-categoria/dialog-add-categoria.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EtiquetaService } from './../../services/etiqueta.service';
@@ -98,5 +99,9 @@ export class ListaComponent implements OnInit {
 
   openDialogCategoria() {
     this.dialog.open(DialogAddCategoriaComponent);
+  }
+
+  openDialogEtiqueta() {
+    this.dialog.open(DialogAddEtiquetaComponent);
   }
 }

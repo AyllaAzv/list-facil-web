@@ -9,7 +9,5 @@ export class HeaderService {
 
   constructor(private localStorageService: LocalStorageService) {
     this.usuario = this.localStorageService.get("usuario");
-   }
-
-
+  }
 }

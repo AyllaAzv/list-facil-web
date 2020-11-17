@@ -72,3 +72,13 @@
     height: 40px;
     border-radius: 50%;
 }
+
+.header .container-user a {
+    font-family: 'Prompt', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    margin-right: 10px;
+    color: black;
+}

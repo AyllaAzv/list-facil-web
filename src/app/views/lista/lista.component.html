@@ -30,7 +30,7 @@
                         <mat-select>
                             <mat-option>Selecione</mat-option>
                             <mat-option *ngFor="let e of etiquetas" value="{{ e }}">{{ e.nome }}</mat-option>
-                            <mat-option value="option3"><a href="">Nova etiqueta</a></mat-option>
+                            <mat-option value="option3"><a (click)="openDialogEtiqueta()">Nova etiqueta</a></mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>

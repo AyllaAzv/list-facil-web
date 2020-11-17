@@ -1,0 +1,61 @@
+.title {
+    font-family: Prompt;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 55px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.container-name {}
+
+.container-email {}
+
+.container-senha {}
+
+.title-container {
+    font-family: Rubik;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #919191;
+}
+
+.content-container {
+    font-family: Rubik;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #919191;
+}
+
+.link {
+    font-family: Rubik;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #A3D2FF;
+}
+
+.img-user {
+    vertical-align: middle;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.img-user:hover {
+    opacity: 80%;
+    background: #333333;
+    position: relative;
+}
