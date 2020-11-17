@@ -1,6 +1,7 @@
-import { Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HeaderService } from 'src/app/services/header.service';
+import { UsuarioService } from './../../services/usuario.service';
+import { DialogUpdateFotoComponent } from './../../components/fragments/dialog-update-foto/dialog-update-foto.component';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-configuracoes',
@@ -10,14 +11,20 @@ import { HeaderService } from 'src/app/services/header.service';
 export class ConfiguracoesComponent implements OnInit {
   usuario: any = {};
 
-  constructor(private headerService: HeaderService) { }
+  constructor(private dialog: MatDialog, private usuarioservice: UsuarioService) { }
 
   ngOnInit(): void {
-    var usuarioLocal = this.headerService.usuario;
+    this.usuarioservice.get().then((data) => {
+      data.subscribe((value) => {
+        this.usuario.nome = value.displayName;
+        this.usuario.email = value.email;
+        this.usuario.foto = value.photoURL;
+      });
+    });
+  }
 
-    if(usuarioLocal != null) {
-      this.usuario = usuarioLocal;
-    } 
+  openDialogUpdateFoto() {
+    this.dialog.open(DialogUpdateFotoComponent);
   }
 
 }

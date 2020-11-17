@@ -1,33 +1,34 @@
 <div class="container">
     <span class="title">Configurações</span>
 
-    <br/>
-    <br/>
+    <br />
+    <br />
 
     <div class="row">
         <div class="col">
             <div class="container-name">
-                <span class="title-container">Nome</span><br/>
-                <span class="content-container">{{ usuario.nome }}</span><br/>
+                <span class="title-container">Nome</span><br />
+                <span class="content-container">{{ usuario.nome }}</span><br />
                 <a href="" class="link">Editar nome</a>
             </div>
             <br /><br /><br />
             <div class="container-email">
-                <span class="title-container">E-mail</span><br/>
-                <span class="content-container">{{ usuario.email }}</span><br/>
+                <span class="title-container">E-mail</span><br />
+                <span class="content-container">{{ usuario.email }}</span><br />
                 <a href="" class="link">Editar e-mail</a>
             </div>
             <br /><br /><br />
             <div class="container-senha">
-                <span class="title-container">Senha</span><br/>
+                <span class="title-container">Senha</span><br />
                 <a href="" class="link">Editar senha</a>
             </div>
         </div>
         <div class="col">
-            <img class="img-user" src="https://cdn1.iconfinder.com/data/icons/flat-business-icons/128/user-256.png" alt="User photo"
-                *ngIf="usuario.foto == undefined">
+            <img class="img-user" src="https://cdn1.iconfinder.com/data/icons/flat-business-icons/128/user-256.png"
+                alt="User photo" *ngIf="usuario.foto == undefined" (click)="openDialogUpdateFoto()">
 
-            <img class="img-user" src="{{ usuario.foto }}" alt="User photo" *ngIf="usuario.foto != undefined">
+            <img class="img-user" src="{{ usuario.foto }}" alt="User photo" *ngIf="usuario.foto != undefined"
+                (click)="openDialogUpdateFoto()">
         </div>
     </div>
 </div>

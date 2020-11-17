@@ -44,6 +44,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { environment } from "../environments/environment";
 import { DialogAddCategoriaComponent } from './components/fragments/dialog-add-categoria/dialog-add-categoria.component';
 import { DialogAddEtiquetaComponent } from './components/fragments/dialog-add-etiqueta/dialog-add-etiqueta.component';
+import { DialogUpdateFotoComponent } from './components/fragments/dialog-update-foto/dialog-update-foto.component';
+import { DialogUpdateNomeComponent } from './components/fragments/dialog-update-nome/dialog-update-nome.component';
 
 
 @NgModule({
@@ -64,6 +66,8 @@ import { DialogAddEtiquetaComponent } from './components/fragments/dialog-add-et
     DialogTermosComponent,
     DialogAddCategoriaComponent,
     DialogAddEtiquetaComponent,
+    DialogUpdateFotoComponent,
+    DialogUpdateNomeComponent,
   ],
   imports: [
     BrowserModule,

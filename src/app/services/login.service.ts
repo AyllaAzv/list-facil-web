@@ -21,4 +21,8 @@ export class LoginService {
     var result = await this.afAuth.signInWithPopup(new firebase.default.auth.GoogleAuthProvider());
     return result;
   }
+
+  async logout() {
+    await this.afAuth.signOut()
+  }
 }
