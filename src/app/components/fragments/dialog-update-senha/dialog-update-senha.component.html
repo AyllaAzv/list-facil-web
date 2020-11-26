@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Atualizar Senha</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form">
+        <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="senha" type="password">
+        </mat-form-field>
+        <br />
+        <span class="text-danger" style="font-size: 12px;"
+            *ngIf="form.controls.senha.touched && form.controls.senha.errors?.required">
+            Informe sua senha
+        </span>
+        <span class="text-danger" *ngIf="form.controls.senha.touched && form.controls.senha.errors?.minlength">
+            Sua senha deve ter no mínimo 6 caracteres
+        </span>
+
+        <mat-form-field>
+            <mat-label>Confirmar Senha</mat-label>
+            <input matInput formControlName="repetirSenha" type="password">
+        </mat-form-field>
+        <br />
+        <span class="text-danger" style="font-size: 12px;"
+            *ngIf="form.controls.repetirSenha.touched && form.controls.repetirSenha.errors?.required">
+            Confirme sua senha
+        </span>
+        <span class="text-danger" *ngIf="form.controls.repetirSenha.touched && form.controls.senha.errors?.minlength">
+            Sua senha deve ter no mínimo 6 caracteres
+        </span>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Fechar</button>
+    <button mat-button cdkFocusInitial mat-dialog-close (click)="onSubmit()">Salvar</button>
+</div>

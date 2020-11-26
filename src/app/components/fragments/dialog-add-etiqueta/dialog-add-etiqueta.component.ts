@@ -26,10 +26,9 @@ export class DialogAddEtiquetaComponent implements OnInit {
 
   onSubmit() {
     if (!this.form.invalid) {
-      this.etiquetaService.create(this.form.value).then(() => {
-        this.showMessage("Etiqueta salva com sucesso!")
-      }).catch((e) => {
-        this.showMessage("Erro ao salvar etiqueta!")
+      this.etiquetaService.create(this.form.value).subscribe((etiqueta) => {
+        console.log(etiqueta);
+        this.showMessage("Etiqueta salva com sucesso!");
       });
     }
   }

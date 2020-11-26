@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { ListaService } from './../../services/lista.service';
+import { Lista } from './../../models/lista';
 import { DialogAddEtiquetaComponent } from './../../components/fragments/dialog-add-etiqueta/dialog-add-etiqueta.component';
 import { DialogAddCategoriaComponent } from './../../components/fragments/dialog-add-categoria/dialog-add-categoria.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,7 +9,8 @@ import { HeaderService } from './../../services/header.service';
 import { CategoriaService } from './../../services/categoria.service';
 import { Item } from './../../models/item';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lista',
@@ -14,62 +18,78 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./lista.component.css']
 })
 export class ListaComponent implements OnInit {
+  form: FormGroup;
   itens: Item[] = [];
   item: Item;
-  titulo: String = "";
-  itemComprado: boolean = false;
-  itemNome: String = "";
-  itemValor: number;
-  itemQtd: number;
   categorias: any;
   etiquetas: any;
 
   constructor(
+    private formBuilder: FormBuilder,
     private categoriaService: CategoriaService, 
     private etiquetaService: EtiquetaService, 
+    private listaService: ListaService,
     private headerService: HeaderService,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
+    this.criaForm();
+    this.clear();
     this.listaCategorias();
     this.listaEtiquetas();
   }
 
+  onSubmit() {
+    if(this.form.valid) {
+      var lista: Lista;
+      lista = {
+        titulo: this.form.get("titulo").value,
+        categoria_id: this.form.get("categoria").value,
+        etiqueta_id: this.form.get("etiqueta").value,
+        data_criacao: new Date().toString(),
+        data_ultima_modificacao:  new Date().toString(),
+        status: true,
+        fixa: false,
+        usuario_id: this.headerService.usuario.id,
+        itens: this.itens
+      }
+      
+      this.listaService.create(lista).subscribe(lista => {
+        console.log(lista);
+        this.showMessage("Lista cadastrada com sucesso!");
+        this.router.navigate(['/home/listas']);
+      });
+
+    } else {
+      this.showMessage("Preencha os campos obrigatórios!");
+    }
+  }
+
+  criaForm() {
+    this.form = this.formBuilder.group({
+      titulo: [null, [Validators.required]],
+      categoria: [null, [Validators.required]],
+      etiqueta: [null, [Validators.required]]
+    });
+  }
+
   listaCategorias() {
-    this.categoriaService.findAll(this.headerService.usuario.id).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.categorias = data;
+    this.categoriaService.read(this.headerService.usuario.id).subscribe((categorias) => {
+      this.categorias = categorias;
     });
   }
 
   listaEtiquetas() {
-    this.etiquetaService.findAll(this.headerService.usuario.id).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.etiquetas = data;
+    this.etiquetaService.read(this.headerService.usuario.id).subscribe((etiquetas) => {
+      this.etiquetas = etiquetas;
     });
   }
 
   adicionar(event: any) {
     if (event.key == "Enter") {
-      this.item = {
-        nome: this.itemNome,
-        comprado: this.itemComprado,
-        preco: this.itemValor,
-        imagem: "",
-        quantidade: this.itemQtd
-      }
-
       this.itens.push(this.item);
       this.clear();
 
@@ -77,23 +97,12 @@ export class ListaComponent implements OnInit {
     }
   }
 
-  concluir() {
-    console.log(this.itens);
-  }
-
   clear() {
-
-    this.itemNome = "";
-    this.itemComprado = false;
-    this.itemQtd = 0;
-    this.itemValor = 0;
-
     this.item = {
-      nome: this.itemNome,
-      comprado: this.itemComprado,
-      preco: this.itemValor,
-      imagem: "",
-      quantidade: this.itemQtd
+      nome: "",
+      comprado: false,
+      preco: undefined,
+      quantidade: undefined
     }
   }
 
@@ -103,5 +112,13 @@ export class ListaComponent implements OnInit {
 
   openDialogEtiqueta() {
     this.dialog.open(DialogAddEtiquetaComponent);
+  }
+
+  showMessage(msg: string): void {
+    this.snackBar.open(msg, 'x', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 }

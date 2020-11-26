@@ -46,6 +46,7 @@ import { DialogAddCategoriaComponent } from './components/fragments/dialog-add-c
 import { DialogAddEtiquetaComponent } from './components/fragments/dialog-add-etiqueta/dialog-add-etiqueta.component';
 import { DialogUpdateFotoComponent } from './components/fragments/dialog-update-foto/dialog-update-foto.component';
 import { DialogUpdateNomeComponent } from './components/fragments/dialog-update-nome/dialog-update-nome.component';
+import { DialogUpdateSenhaComponent } from './components/fragments/dialog-update-senha/dialog-update-senha.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { DialogUpdateNomeComponent } from './components/fragments/dialog-update-
     DialogAddEtiquetaComponent,
     DialogUpdateFotoComponent,
     DialogUpdateNomeComponent,
+    DialogUpdateSenhaComponent,
   ],
   imports: [
     BrowserModule,

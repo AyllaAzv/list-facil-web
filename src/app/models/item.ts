@@ -1,8 +1,7 @@
 export interface Item {
     id?: number;
-    nome: String;
+    nome: string;
     quantidade: number;
     preco: number;
-    imagem: String;
     comprado: boolean;
 }

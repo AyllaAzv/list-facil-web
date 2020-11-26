@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
-import { LocalStorageService } from './local-storage.service';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Usuario } from './../models/usuario';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class UsuarioService {
   constructor(
     private snackBar: MatSnackBar,
     private afAuth: AngularFireAuth,
-    private localStorageService: LocalStorageService,
+    private loginService: LoginService,
     private storage: AngularFireStorage
   ) { }
 
@@ -46,19 +46,14 @@ export class UsuarioService {
   updateSenha(senha: string) {
     this.afAuth.user.subscribe((u) => {
       u.updatePassword(senha).then(() => {
+        this.loginService.authenticate(u.email, senha).then((result) => {
+          console.log(result);
+        }).catch((e) => {
+          console.log(e);
+        });
         this.showMessage("Senha atualizada com sucesso!");
-      }).catch(() => {
-        this.showMessage("Erro ao atualizar senha!");
-      });
-    });
-  }
-
-  updateEmail(email: string) {
-    this.afAuth.user.subscribe((u) => {
-      u.updateEmail(email).then(() => {
-        this.showMessage("E-mail atualizado com sucesso!");
-      }).catch(() => {
-        this.showMessage("Erro ao atualizar e-mail!");
+      }).catch((e) => {
+        console.log(e);
       });
     });
   }

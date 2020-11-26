@@ -27,10 +27,9 @@ export class DialogAddCategoriaComponent implements OnInit {
 
   onSubmit() {
     if (!this.form.invalid) {
-      this.categoriaService.create(this.form.value).then(() => {
+      this.categoriaService.create(this.form.value).subscribe((categoria) => {
+        console.log(categoria);
         this.showMessage("Categoria salva com sucesso!")
-      }).catch((e) => {
-        this.showMessage("Erro ao salvar categoria!")
       });
     }
   }

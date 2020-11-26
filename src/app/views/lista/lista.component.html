@@ -8,34 +8,47 @@
     </div>
     <div class="row content">
         <div class="col-8">
+            <form [formGroup]="form">
             <mat-form-field>
                 <mat-label>Título</mat-label>
-                <input type="text" matInput placeholder="Informe o título" [(ngModel)]="titulo">
+                <input type="text" matInput placeholder="Informe o título" formControlName="titulo">
             </mat-form-field>
+
+            <span class="text-danger" *ngIf="form.controls.titulo.touched && form.controls.titulo.errors?.required">
+                Informe o título
+            </span>
 
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <mat-form-field>
                         <mat-label>Categoria</mat-label>
-                        <mat-select>
+                        <mat-select formControlName="categoria">
                             <mat-option>Selecione</mat-option>
-                            <mat-option *ngFor="let c of categorias" value="{{ c }}">{{ c.nome }}</mat-option>
-                            <mat-option value="option3"><a (click)="openDialogCategoria()">Nova categoria</a></mat-option>
+                            <mat-option *ngFor="let c of categorias" value="{{ c.id }}">{{ c.nome }}</mat-option>
+                            <mat-option><a (click)="openDialogCategoria()">Nova categoria</a></mat-option>
                         </mat-select>
                     </mat-form-field>
+
+                    <span class="text-danger" *ngIf="form.controls.categoria.touched && form.controls.categoria.errors?.required">
+                        Informe a categoria
+                    </span>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <mat-form-field>
                         <mat-label>Etiqueta</mat-label>
-                        <mat-select>
+                        <mat-select formControlName="etiqueta">
                             <mat-option>Selecione</mat-option>
-                            <mat-option *ngFor="let e of etiquetas" value="{{ e }}">{{ e.nome }}</mat-option>
-                            <mat-option value="option3"><a (click)="openDialogEtiqueta()">Nova etiqueta</a></mat-option>
+                            <mat-option *ngFor="let e of etiquetas" value="{{ e.id }}">{{ e.nome }}</mat-option>
+                            <mat-option><a (click)="openDialogEtiqueta()">Nova etiqueta</a></mat-option>
                         </mat-select>
                     </mat-form-field>
+
+                    <span class="text-danger" *ngIf="form.controls.etiqueta.touched && form.controls.etiqueta.errors?.required">
+                        Informe a etiqueta
+                    </span>
                 </div>
             </div>
-
+        </form>
             <div class="row" *ngFor="let item of itens">
                 <div class="col-md-1 col-sm-1">
                     <mat-checkbox [(ngModel)]="item.comprado"></mat-checkbox>
@@ -53,19 +66,19 @@
 
             <div class="row">
                 <div class="col-md-1 col-sm-1">
-                    <mat-checkbox [(ngModel)]="itemComprado"> </mat-checkbox>
+                    <mat-checkbox [(ngModel)]="item.comprado"> </mat-checkbox>
                 </div>
                 <div class="col-md-5 col-sm-4">
                     <input type="text" placeholder="Item" matInput (keypress)="adicionar($event)"
-                        [(ngModel)]="itemNome">
+                        [(ngModel)]="item.nome">
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <input type="number" placeholder="Qtd" matInput (keypress)="adicionar($event)"
-                        [(ngModel)]="itemQtd">
+                        [(ngModel)]="item.quantidade">
                 </div>
                 <div class="col-md-3 col-sm-4">
                     <input type="text" placeholder="R$ 0,00" matInput (keypress)="adicionar($event)"
-                        [(ngModel)]="itemValor">
+                        [(ngModel)]="item.preco">
                 </div>
             </div>
         </div>
@@ -89,6 +102,6 @@
             </a>
         </div>
 
-        <button (click)="concluir()">CONCLUIR</button>
+        <button (click)="onSubmit()">CONCLUIR</button>
     </div>
 </div>

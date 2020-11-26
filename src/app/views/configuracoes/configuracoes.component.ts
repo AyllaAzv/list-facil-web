@@ -1,7 +1,9 @@
+import { DialogUpdateNomeComponent } from './../../components/fragments/dialog-update-nome/dialog-update-nome.component';
 import { UsuarioService } from './../../services/usuario.service';
 import { DialogUpdateFotoComponent } from './../../components/fragments/dialog-update-foto/dialog-update-foto.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogUpdateSenhaComponent } from 'src/app/components/fragments/dialog-update-senha/dialog-update-senha.component';
 
 @Component({
   selector: 'app-configuracoes',
@@ -25,6 +27,14 @@ export class ConfiguracoesComponent implements OnInit {
 
   openDialogUpdateFoto() {
     this.dialog.open(DialogUpdateFotoComponent);
+  }
+
+  openDialogUpdateNome() {
+    this.dialog.open(DialogUpdateNomeComponent);
+  }
+
+  openDialogUpdateSenha() {
+    this.dialog.open(DialogUpdateSenhaComponent);
   }
 
 }

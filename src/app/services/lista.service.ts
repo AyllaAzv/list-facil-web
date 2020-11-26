@@ -1,30 +1,26 @@
-import { Categoria } from './../models/categoria';
+import { Lista } from './../models/lista';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EMPTY, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EMPTY, Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaService {
-  baseUrl = 'http://localhost:3000/categorias';
+export class ListaService {
+  baseUrl = 'http://localhost:3000/listas';
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar,) { }
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
-  read(usuario_id: string): Observable<Categoria[]> {
+  read(usuario_id: string): Observable<Lista[]> {
     const url = `${this.baseUrl}?usuario_id=${usuario_id}`;
-    return this.http.get<Categoria[]>(url);
+    return this.http.get<Lista[]>(url);
   }
 
-  readById(id: number): Observable<Categoria> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.get<Categoria>(url);
-  }
-
-  create(categoria: Categoria): Observable<Categoria> {
-    return this.http.post<Categoria>(this.baseUrl, categoria).pipe(
+  create(lista: Lista): Observable<Lista> {
+    return this.http.post<Lista>(this.baseUrl, lista).pipe(
       map(obj => obj),
       catchError(e => this.errorHandle(e))
     );
@@ -42,5 +38,4 @@ export class CategoriaService {
       verticalPosition: 'top',
     });
   }
-
 }
