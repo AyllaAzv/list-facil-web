@@ -23,7 +23,7 @@
                 <div class="container-footer">
                     <span>{{ lista.data_criacao | date:"dd 'de' MMM, yyyy" }}</span>
 
-                    <div class="editar">
+                    <div class="editar" (click)="onClickNavigateToLista(lista.id)">
                         <img src="assets/images/editar.png" alt="">
                     </div>
                 </div>

@@ -1,9 +1,11 @@
+import { Lista } from './../../models/lista';
 import { EtiquetaService } from './../../services/etiqueta.service';
 import { CategoriaService } from './../../services/categoria.service';
 import { HeaderService } from './../../services/header.service';
 import { ListaService } from './../../services/lista.service';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listas',
@@ -11,13 +13,14 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./listas.component.css']
 })
 export class ListasComponent implements OnInit {
-  listas: any[] = [];
+  listas: Lista[] = [];
 
   constructor(
     private listaService: ListaService, 
     private headerService: HeaderService, 
     private categoriaService: CategoriaService,
-    private etiquetaService: EtiquetaService
+    private etiquetaService: EtiquetaService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -36,6 +39,10 @@ export class ListasComponent implements OnInit {
         this.listas.push(l);
       });
     });
+  }
+
+  onClickNavigateToLista(id: number) {
+    this.router.navigate(["/home/lista/" + id]);
   }
 
 }

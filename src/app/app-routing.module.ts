@@ -26,6 +26,10 @@ const routes: Routes = [
         component: ListasComponent
       },
       {
+        path: 'lista/:id',
+        component: ListaComponent
+      },
+      {
         path: 'lista',
         component: ListaComponent
       },

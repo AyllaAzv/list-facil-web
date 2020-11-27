@@ -19,6 +19,11 @@ export class ListaService {
     return this.http.get<Lista[]>(url);
   }
 
+  readById(id: any): Observable<Lista> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<Lista>(url);
+  }
+
   create(lista: Lista): Observable<Lista> {
     return this.http.post<Lista>(this.baseUrl, lista).pipe(
       map(obj => obj),
@@ -26,7 +31,16 @@ export class ListaService {
     );
   }
 
+  update(lista: Lista): Observable<Lista> {
+    const url = `${this.baseUrl}/${lista.id}`;
+    return this.http.put<Lista>(url, lista).pipe(
+      map(obj => obj),
+      catchError(e => this.errorHandle(e))
+    );
+  }
+
   errorHandle(e: any): Observable<any> {
+    console.log(e)
     this.showMessage('Ocorreu um erro.');
     return EMPTY;
   }

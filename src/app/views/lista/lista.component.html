@@ -24,7 +24,7 @@
                         <mat-label>Categoria</mat-label>
                         <mat-select formControlName="categoria">
                             <mat-option>Selecione</mat-option>
-                            <mat-option *ngFor="let c of categorias" value="{{ c.id }}">{{ c.nome }}</mat-option>
+                            <mat-option *ngFor="let c of categorias" [value]="c.id">{{ c.nome }}</mat-option>
                             <mat-option><a (click)="openDialogCategoria()">Nova categoria</a></mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -38,7 +38,7 @@
                         <mat-label>Etiqueta</mat-label>
                         <mat-select formControlName="etiqueta">
                             <mat-option>Selecione</mat-option>
-                            <mat-option *ngFor="let e of etiquetas" value="{{ e.id }}">{{ e.nome }}</mat-option>
+                            <mat-option *ngFor="let e of etiquetas" [value]="e.id">{{ e.nome }}</mat-option>
                             <mat-option><a (click)="openDialogEtiqueta()">Nova etiqueta</a></mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -84,7 +84,7 @@
         </div>
         <div class="col-4 valor-total">
             <span>
-                R$ 0,00
+                R$ {{ total }}
             </span>
         </div>
     </div>
