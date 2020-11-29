@@ -104,6 +104,7 @@
 .options .links a i {
     color: #717171;
     font-size: 20px;
+    cursor: pointer;
 }
 
 /*COR DO MAT-FORMFIELD*/

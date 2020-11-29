@@ -48,6 +48,13 @@ import { DialogUpdateFotoComponent } from './components/fragments/dialog-update-
 import { DialogUpdateNomeComponent } from './components/fragments/dialog-update-nome/dialog-update-nome.component';
 import { DialogUpdateSenhaComponent } from './components/fragments/dialog-update-senha/dialog-update-senha.component';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+const maskConfigFunction: () => Partial<IConfig> = () => {
+  return {
+    validation: false,
+  };
+};
 
 @NgModule({
   declarations: [
@@ -93,6 +100,7 @@ import { DialogUpdateSenhaComponent } from './components/fragments/dialog-update
     AngularFireAuthModule,
     AngularFirestoreModule,
     HttpClientModule,
+    NgxMaskModule.forRoot(maskConfigFunction),
   ],
   providers: [],
   bootstrap: [AppComponent]

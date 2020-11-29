@@ -10,13 +10,16 @@
                     <div class="marcador"></div>
                     <span>{{ lista.categoria.nome }}</span>
                     <div class="etiqueta">
-                       <span>{{ lista.etiqueta.nome.toUpperCase() }}</span>
+                        <span>{{ lista.etiqueta.nome.toUpperCase() }}</span>
                     </div>
                 </div>
 
                 <div class="container-checkbox">
                     <div class="row" *ngFor="let i of lista.itens">
-                        <mat-checkbox style="font-family: 'Prompt', sans-serif;" [(ngModel)]="i.comprado" >{{ i.nome }}</mat-checkbox>
+                        <mat-checkbox style="font-family: 'Prompt', sans-serif;" (change)="onClickUpdateItemComprado(i, $event)"
+                            [(ngModel)]="i.comprado">
+                            {{ i.nome }}
+                        </mat-checkbox>
                     </div>
                 </div>
 
@@ -82,5 +85,5 @@
                 </div>
             </div>
         </div> -->
-      </div>
+    </div>
 </div>

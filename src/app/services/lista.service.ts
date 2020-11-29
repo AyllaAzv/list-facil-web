@@ -39,8 +39,15 @@ export class ListaService {
     );
   }
 
+  delete(id: number): Observable<Lista> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.delete<Lista>(url).pipe(
+      map(obj => obj),
+      catchError(e => this.errorHandle(e))
+    );
+  }
+
   errorHandle(e: any): Observable<any> {
-    console.log(e)
     this.showMessage('Ocorreu um erro.');
     return EMPTY;
   }

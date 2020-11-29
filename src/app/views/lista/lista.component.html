@@ -9,58 +9,62 @@
     <div class="row content">
         <div class="col-8">
             <form [formGroup]="form">
-            <mat-form-field>
-                <mat-label>Título</mat-label>
-                <input type="text" matInput placeholder="Informe o título" formControlName="titulo">
-            </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Título</mat-label>
+                    <input type="text" matInput placeholder="Informe o título" formControlName="titulo">
+                </mat-form-field>
 
-            <span class="text-danger" *ngIf="form.controls.titulo.touched && form.controls.titulo.errors?.required">
-                Informe o título
-            </span>
+                <span class="text-danger" *ngIf="form.controls.titulo.touched && form.controls.titulo.errors?.required">
+                    Informe o título
+                </span>
 
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <mat-form-field>
-                        <mat-label>Categoria</mat-label>
-                        <mat-select formControlName="categoria">
-                            <mat-option>Selecione</mat-option>
-                            <mat-option *ngFor="let c of categorias" [value]="c.id">{{ c.nome }}</mat-option>
-                            <mat-option><a (click)="openDialogCategoria()">Nova categoria</a></mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <mat-form-field>
+                            <mat-label>Categoria</mat-label>
+                            <mat-select formControlName="categoria">
+                                <mat-option>Selecione</mat-option>
+                                <mat-option *ngFor="let c of categorias" [value]="c.id">{{ c.nome }}</mat-option>
+                                <mat-option><a (click)="openDialogCategoria()">Nova categoria</a></mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-                    <span class="text-danger" *ngIf="form.controls.categoria.touched && form.controls.categoria.errors?.required">
-                        Informe a categoria
-                    </span>
+                        <span class="text-danger"
+                            *ngIf="form.controls.categoria.touched && form.controls.categoria.errors?.required">
+                            Informe a categoria
+                        </span>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <mat-form-field>
+                            <mat-label>Etiqueta</mat-label>
+                            <mat-select formControlName="etiqueta">
+                                <mat-option>Selecione</mat-option>
+                                <mat-option *ngFor="let e of etiquetas" [value]="e.id">{{ e.nome }}</mat-option>
+                                <mat-option><a (click)="openDialogEtiqueta()">Nova etiqueta</a></mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <span class="text-danger"
+                            *ngIf="form.controls.etiqueta.touched && form.controls.etiqueta.errors?.required">
+                            Informe a etiqueta
+                        </span>
+                    </div>
                 </div>
-                <div class="col-md-6 col-sm-12">
-                    <mat-form-field>
-                        <mat-label>Etiqueta</mat-label>
-                        <mat-select formControlName="etiqueta">
-                            <mat-option>Selecione</mat-option>
-                            <mat-option *ngFor="let e of etiquetas" [value]="e.id">{{ e.nome }}</mat-option>
-                            <mat-option><a (click)="openDialogEtiqueta()">Nova etiqueta</a></mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <span class="text-danger" *ngIf="form.controls.etiqueta.touched && form.controls.etiqueta.errors?.required">
-                        Informe a etiqueta
-                    </span>
-                </div>
-            </div>
-        </form>
+            </form>
             <div class="row" *ngFor="let item of itens">
                 <div class="col-md-1 col-sm-1">
                     <mat-checkbox [(ngModel)]="item.comprado"></mat-checkbox>
                 </div>
-                <div class="col-md col-sm-4">
+                <div class="col-md-5 col-sm-4">
                     <input type="text" placeholder="Item" matInput [(ngModel)]="item.nome">
                 </div>
-                <div class="col-md-2 col-sm-3">
-                    <input type="text" placeholder="Qtd" matInput [(ngModel)]="item.quantidade">
+                <div class="col-md-3 col-sm-3">
+                    <input type="number" placeholder="Qtd" matInput (change)="calculaTotal()"
+                        [(ngModel)]="item.quantidade">
                 </div>
                 <div class="col-md-3 col-sm-4">
-                    <input type="text" placeholder="Valor" matInput [(ngModel)]="item.preco">
+                    <input type="text" placeholder="Valor" mask="separator.2" thousandSeparator="," matInput
+                        (change)="calculaTotal()" [(ngModel)]="item.preco">
                 </div>
             </div>
 
@@ -77,8 +81,8 @@
                         [(ngModel)]="item.quantidade">
                 </div>
                 <div class="col-md-3 col-sm-4">
-                    <input type="text" placeholder="R$ 0,00" matInput (keypress)="adicionar($event)"
-                        [(ngModel)]="item.preco">
+                    <input type="text" placeholder="R$ 0.00" mask="separator.2" thousandSeparator="," matInput
+                        (keypress)="adicionar($event)" [(ngModel)]="item.preco">
                 </div>
             </div>
         </div>
@@ -90,12 +94,12 @@
     </div>
     <div class="options">
         <div class="links">
-            <a>
+            <a (click)="onClickDelete()" *ngIf="id != null">
                 <i class="material-icons">
                     delete
                 </i>
             </a>
-            <a>
+            <a *ngIf="id != null">
                 <i class="material-icons">
                     share
                 </i>

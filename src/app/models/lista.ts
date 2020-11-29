@@ -1,9 +1,10 @@
+import { Item } from './item';
 export interface Lista {
     id?: number;
     titulo: string;
     data_criacao: string;
     data_ultima_modificacao: string;
-    itens: any[];
+    itens?: Item[];
     categoria_id: number;
     categoria?: any;
     etiqueta?: any;

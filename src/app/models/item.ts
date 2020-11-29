@@ -4,4 +4,5 @@ export interface Item {
     quantidade: number;
     preco: number;
     comprado: boolean;
+    lista_id?: number;
 }

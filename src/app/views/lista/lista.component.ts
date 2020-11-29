@@ -1,3 +1,4 @@
+import { ItemService } from './../../services/item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListaService } from './../../services/lista.service';
 import { Lista } from './../../models/lista';
@@ -11,7 +12,6 @@ import { Item } from './../../models/item';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-lista',
@@ -32,6 +32,7 @@ export class ListaComponent implements OnInit {
     private categoriaService: CategoriaService,
     private etiquetaService: EtiquetaService,
     private listaService: ListaService,
+    private itemService: ItemService,
     private headerService: HeaderService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
@@ -54,8 +55,10 @@ export class ListaComponent implements OnInit {
           categoria: lista.categoria_id,
           etiqueta: lista.etiqueta_id
         });
-        this.itens = lista.itens;
-        this.calculaTotal();
+        this.itemService.read(lista.id).subscribe(itens => {
+          this.itens = itens;
+          this.calculaTotal();
+        })
       });
     }
 
@@ -73,11 +76,10 @@ export class ListaComponent implements OnInit {
         data_ultima_modificacao: new Date().toString(),
         status: true,
         fixa: false,
-        usuario_id: this.headerService.usuario.id,
-        itens: this.itens
+        usuario_id: this.headerService.usuario.id
       }
 
-      if (this.id != null)
+      if (this.id == null)
         this.create(lista);
       else
         this.update(lista)
@@ -88,7 +90,11 @@ export class ListaComponent implements OnInit {
   }
 
   create(lista: Lista) {
-    this.listaService.create(lista).subscribe(() => {
+    this.listaService.create(lista).subscribe((l) => {
+      this.itens.forEach(i => {
+        i.lista_id = l.id;
+        this.itemService.create(i).subscribe();
+      });
       this.showMessage("Lista cadastrada com sucesso!");
       this.router.navigate(['/home/listas']);
     });
@@ -96,7 +102,27 @@ export class ListaComponent implements OnInit {
 
   update(lista: Lista) {
     this.listaService.update(lista).subscribe(() => {
+      this.itens.forEach(i => {
+        if (i.id == null) {
+          i.lista_id = lista.id;
+          this.itemService.create(i).subscribe();
+        }
+        else
+          this.itemService.update(i).subscribe();
+      });
       this.showMessage("Lista atualizada com sucesso!");
+      this.router.navigate(['/home/listas']);
+    });
+  }
+
+  onClickDelete() {
+    this.listaService.delete(this.id).subscribe(() => {
+      this.itens.forEach(i => {
+        if(i.id != null) {
+          this.itemService.delete(i.id).subscribe();
+        }
+      });
+      this.showMessage("Lista deletada com sucesso!");
       this.router.navigate(['/home/listas']);
     });
   }
@@ -132,13 +158,10 @@ export class ListaComponent implements OnInit {
   }
 
   calculaTotal() {
+    this.total = 0;
     this.itens.forEach(i => {
-      console.log(i.preco)
-      console.log(i.quantidade)
       this.total += (i.preco * i.quantidade);
-
     });
-    console.log(this.total)
   }
 
   clear() {
