@@ -1,5 +1,4 @@
 import { HeaderService } from './../../../services/header.service';
-import { Categoria } from './../../../models/categoria';
 import { CategoriaService } from './../../../services/categoria.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -30,7 +29,6 @@ export class DialogAddCategoriaComponent implements OnInit {
   onSubmit() {
     if (!this.form.invalid) {
       this.categoriaService.create(this.form.value).subscribe((categoria) => {
-        console.log(categoria);
         this.showMessage("Categoria salva com sucesso!");
         this.dialogRef.close();
       });

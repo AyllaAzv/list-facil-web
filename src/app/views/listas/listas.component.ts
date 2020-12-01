@@ -6,7 +6,6 @@ import { CategoriaService } from './../../services/categoria.service';
 import { HeaderService } from './../../services/header.service';
 import { ListaService } from './../../services/lista.service';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({

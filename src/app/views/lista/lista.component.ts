@@ -29,7 +29,7 @@ export class ListaComponent implements OnInit {
   etiquetas: any;
   id: any;
   total: number = 0.0;
-  lista: Lista;
+  lista: any = {};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -71,6 +71,7 @@ export class ListaComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.lista.cor)
     if (this.form.valid) {
       this.lista = {
         id: this.id != null ? this.id : null,
@@ -79,6 +80,7 @@ export class ListaComponent implements OnInit {
         etiqueta_id: this.form.get("etiqueta").value,
         data_criacao: this.id != null ? this.lista.data_criacao : new Date().toString(),
         data_ultima_modificacao: new Date().toString(),
+        cor: this.lista.cor != null ? this.lista.cor : "#FFF0CB",
         status: true,
         fixa: false,
         usuario_id: this.headerService.usuario.id
@@ -207,7 +209,18 @@ export class ListaComponent implements OnInit {
   }
 
   openBottomSheet(): void {
-    this.bottomSheet.open(BottomsheetCoresComponent);
+    if(this.lista.cor == undefined) 
+      this.lista.cor = "#FFF0CB";
+
+    const bottomShetRef = this.bottomSheet.open(BottomsheetCoresComponent, {
+      data: {
+        cor: this.lista.cor
+      }
+    });
+
+    bottomShetRef.afterDismissed().subscribe(result => {
+      this.lista.cor = result;
+    });
   }
 
   showMessage(msg: string): void {
