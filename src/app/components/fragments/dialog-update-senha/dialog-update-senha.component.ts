@@ -1,4 +1,4 @@
-import { LoginService } from './../../../services/login.service';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -11,7 +11,11 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class DialogUpdateSenhaComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private usuarioService: UsuarioService,
+    private dialogRef: MatDialogRef<DialogUpdateSenhaComponent>
+    ) { }
 
   ngOnInit(): void {
     this.criaForm();
@@ -24,6 +28,8 @@ export class DialogUpdateSenhaComponent implements OnInit {
 
       if(senha == repetirSenha)
         this.usuarioService.updateSenha(senha);
+
+      this.dialogRef.close();
     }
   }
 

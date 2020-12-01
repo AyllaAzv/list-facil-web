@@ -1,6 +1,7 @@
 import { UsuarioService } from './../../../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-update-foto',
@@ -10,7 +11,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class DialogUpdateFotoComponent implements OnInit {
   file: any;
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, public dialogRef: MatDialogRef<DialogUpdateFotoComponent>) { }
 
   ngOnInit(): void {
   }
@@ -21,5 +22,6 @@ export class DialogUpdateFotoComponent implements OnInit {
 
   onSubmit() {
     this.usuarioService.updateFoto(this.file);
+    this.dialogRef.close();
   }
 }

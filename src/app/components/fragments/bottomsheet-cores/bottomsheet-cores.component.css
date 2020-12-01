@@ -1,0 +1,24 @@
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    color: #717171;
+}
+
+.row {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.circle-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+span {
+    font-weight: 600;
+    color: #717171;
+}

@@ -23,6 +23,6 @@ export class LoginService {
   }
 
   async logout() {
-    await this.afAuth.signOut()
+    await this.afAuth.signOut();
   }
 }

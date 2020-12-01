@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -48,7 +49,8 @@ import { DialogUpdateFotoComponent } from './components/fragments/dialog-update-
 import { DialogUpdateNomeComponent } from './components/fragments/dialog-update-nome/dialog-update-nome.component';
 import { DialogUpdateSenhaComponent } from './components/fragments/dialog-update-senha/dialog-update-senha.component';
 
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { BottomsheetCoresComponent } from './components/fragments/bottomsheet-cores/bottomsheet-cores.component'
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -77,6 +79,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     DialogUpdateFotoComponent,
     DialogUpdateNomeComponent,
     DialogUpdateSenhaComponent,
+    BottomsheetCoresComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +95,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     MatSnackBarModule,
     MatDialogModule,
     MatButtonModule,
+    MatBottomSheetModule,
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,

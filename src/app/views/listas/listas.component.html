@@ -3,21 +3,34 @@
 
     <div class="row">
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let lista of listas">
-            <div class="cardlist-laranja">
+            <div class="cardlist" [ngClass]="{
+                'background-laranja' : lista.cor == '#FFF0CB',
+                'background-verde' : lista.cor == '#BAF2D8',
+                'background-vermelho' : lista.cor == '#F2BAC9'
+            }">
                 <span class="title">{{ lista.titulo }}</span>
 
                 <div class="container-categoria">
-                    <div class="marcador"></div>
+                    <div class="marcador" [ngClass]="{
+                        'background-verde' : lista.cor == '#FFF0CB',
+                        'background-azul' : lista.cor == '#BAF2D8',
+                        'background-rosa' : lista.cor == '#F2BAC9'
+                    }"
+                    ></div>
                     <span>{{ lista.categoria.nome }}</span>
-                    <div class="etiqueta">
+                    <div class="etiqueta" [ngClass]="{
+                        'background-vermelho' : lista.cor == '#FFF0CB',
+                        'background-azul' : lista.cor == '#BAF2D8',
+                        'background-rosa' : lista.cor == '#F2BAC9'
+                    }">
                         <span>{{ lista.etiqueta.nome.toUpperCase() }}</span>
                     </div>
                 </div>
 
                 <div class="container-checkbox">
                     <div class="row" *ngFor="let i of lista.itens">
-                        <mat-checkbox style="font-family: 'Prompt', sans-serif;" (change)="onClickUpdateItemComprado(i, $event)"
-                            [(ngModel)]="i.comprado">
+                        <mat-checkbox style="font-family: 'Prompt', sans-serif;"
+                            (change)="onClickUpdateItemComprado(i, $event)" [(ngModel)]="i.comprado">
                             {{ i.nome }}
                         </mat-checkbox>
                     </div>

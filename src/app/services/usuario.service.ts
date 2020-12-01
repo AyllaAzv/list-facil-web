@@ -74,8 +74,6 @@ export class UsuarioService {
         });
       });
     });
-
-
   }
 
   showMessage(msg: string): void {

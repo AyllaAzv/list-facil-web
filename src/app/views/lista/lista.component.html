@@ -55,16 +55,23 @@
                 <div class="col-md-1 col-sm-1">
                     <mat-checkbox [(ngModel)]="item.comprado"></mat-checkbox>
                 </div>
-                <div class="col-md-5 col-sm-4">
+                <div class="col-md-5 col-sm-5">
                     <input type="text" placeholder="Item" matInput [(ngModel)]="item.nome">
                 </div>
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-2 col-sm-2">
                     <input type="number" placeholder="Qtd" matInput (change)="calculaTotal()"
                         [(ngModel)]="item.quantidade">
                 </div>
-                <div class="col-md-3 col-sm-4">
+                <div class="col-md-2 col-sm-2">
                     <input type="text" placeholder="Valor" mask="separator.2" thousandSeparator="," matInput
                         (change)="calculaTotal()" [(ngModel)]="item.preco">
+                </div>
+                <div class="col-md-1 col-sm-1">
+                    <a style="cursor: pointer;" (click)="remover(item)">
+                        <i class="material-icons" style="color: #fc6f6f;">
+                            close
+                        </i>
+                    </a>
                 </div>
             </div>
 
@@ -102,6 +109,11 @@
             <a *ngIf="id != null">
                 <i class="material-icons">
                     share
+                </i>
+            </a>
+            <a (click)="openBottomSheet()">
+                <i class="material-icons">
+                    color_lens
                 </i>
             </a>
         </div>

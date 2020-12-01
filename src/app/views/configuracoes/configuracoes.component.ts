@@ -16,6 +16,10 @@ export class ConfiguracoesComponent implements OnInit {
   constructor(private dialog: MatDialog, private usuarioservice: UsuarioService) { }
 
   ngOnInit(): void {
+    this.initUsuario();
+  }
+
+  initUsuario() {
     this.usuarioservice.get().then((data) => {
       data.subscribe((value) => {
         this.usuario.nome = value.displayName;
@@ -26,15 +30,24 @@ export class ConfiguracoesComponent implements OnInit {
   }
 
   openDialogUpdateFoto() {
-    this.dialog.open(DialogUpdateFotoComponent);
+    const dialogRef = this.dialog.open(DialogUpdateFotoComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.initUsuario();
+    });
   }
 
   openDialogUpdateNome() {
-    this.dialog.open(DialogUpdateNomeComponent);
+    const dialogRef = this.dialog.open(DialogUpdateNomeComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.initUsuario();
+    });
   }
 
   openDialogUpdateSenha() {
-    this.dialog.open(DialogUpdateSenhaComponent);
+    const dialogRef = this.dialog.open(DialogUpdateSenhaComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.initUsuario();
+    });
   }
 
 }

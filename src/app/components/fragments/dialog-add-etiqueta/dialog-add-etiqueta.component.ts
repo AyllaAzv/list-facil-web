@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeaderService } from 'src/app/services/header.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add-etiqueta',
@@ -17,7 +18,8 @@ export class DialogAddEtiquetaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private etiquetaService: EtiquetaService,
     private headerService: HeaderService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<DialogAddEtiquetaComponent>
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +31,7 @@ export class DialogAddEtiquetaComponent implements OnInit {
       this.etiquetaService.create(this.form.value).subscribe((etiqueta) => {
         console.log(etiqueta);
         this.showMessage("Etiqueta salva com sucesso!");
+        this.dialogRef.close();
       });
     }
   }

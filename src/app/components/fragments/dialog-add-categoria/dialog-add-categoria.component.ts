@@ -4,6 +4,7 @@ import { CategoriaService } from './../../../services/categoria.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-add-categoria',
@@ -18,7 +19,8 @@ export class DialogAddCategoriaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private categoriaService: CategoriaService,
     private headerService: HeaderService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<DialogAddCategoriaComponent>,
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +31,8 @@ export class DialogAddCategoriaComponent implements OnInit {
     if (!this.form.invalid) {
       this.categoriaService.create(this.form.value).subscribe((categoria) => {
         console.log(categoria);
-        this.showMessage("Categoria salva com sucesso!")
+        this.showMessage("Categoria salva com sucesso!");
+        this.dialogRef.close();
       });
     }
   }

@@ -1,3 +1,4 @@
+import { BottomsheetCoresComponent } from './../../components/fragments/bottomsheet-cores/bottomsheet-cores.component';
 import { ItemService } from './../../services/item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListaService } from './../../services/lista.service';
@@ -12,6 +13,7 @@ import { Item } from './../../models/item';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-lista',
@@ -21,11 +23,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ListaComponent implements OnInit {
   form: FormGroup;
   itens: Item[] = [];
+  itensRemovidos: Item[] = [];
   item: Item;
   categorias: any;
   etiquetas: any;
   id: any;
   total: number = 0.0;
+  lista: Lista;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +41,8 @@ export class ListaComponent implements OnInit {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private bottomSheet: MatBottomSheet
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +55,7 @@ export class ListaComponent implements OnInit {
 
     if (this.id != null) {
       this.listaService.readById(this.id).subscribe(lista => {
+        this.lista = lista;
         this.form.patchValue({
           titulo: lista.titulo,
           categoria: lista.categoria_id,
@@ -66,23 +72,24 @@ export class ListaComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      var lista: Lista;
-      lista = {
+      this.lista = {
         id: this.id != null ? this.id : null,
         titulo: this.form.get("titulo").value,
         categoria_id: this.form.get("categoria").value,
         etiqueta_id: this.form.get("etiqueta").value,
-        data_criacao: new Date().toString(),
+        data_criacao: this.id != null ? this.lista.data_criacao : new Date().toString(),
         data_ultima_modificacao: new Date().toString(),
         status: true,
         fixa: false,
         usuario_id: this.headerService.usuario.id
       }
 
+      this.deletarItensRemovidos();
+
       if (this.id == null)
-        this.create(lista);
+        this.create(this.lista);
       else
-        this.update(lista)
+        this.update(this.lista)
 
     } else {
       this.showMessage("Preencha os campos obrigatórios!");
@@ -118,7 +125,7 @@ export class ListaComponent implements OnInit {
   onClickDelete() {
     this.listaService.delete(this.id).subscribe(() => {
       this.itens.forEach(i => {
-        if(i.id != null) {
+        if (i.id != null) {
           this.itemService.delete(i.id).subscribe();
         }
       });
@@ -157,6 +164,18 @@ export class ListaComponent implements OnInit {
     }
   }
 
+  remover(item: Item) {
+    this.itens = this.itens.filter(obj => obj !== item);
+    this.itensRemovidos.push(item);
+    this.calculaTotal();
+  }
+
+  deletarItensRemovidos() {
+    this.itensRemovidos.forEach(i => {
+      this.itemService.delete(i.id).subscribe();
+    });
+  }
+
   calculaTotal() {
     this.total = 0;
     this.itens.forEach(i => {
@@ -174,11 +193,21 @@ export class ListaComponent implements OnInit {
   }
 
   openDialogCategoria() {
-    this.dialog.open(DialogAddCategoriaComponent);
+    const dialogRef = this.dialog.open(DialogAddCategoriaComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.listaCategorias();
+    });
   }
 
   openDialogEtiqueta() {
-    this.dialog.open(DialogAddEtiquetaComponent);
+    const dialogRef = this.dialog.open(DialogAddEtiquetaComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.listaEtiquetas();
+    });
+  }
+
+  openBottomSheet(): void {
+    this.bottomSheet.open(BottomsheetCoresComponent);
   }
 
   showMessage(msg: string): void {

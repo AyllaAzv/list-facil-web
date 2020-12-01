@@ -1,0 +1,11 @@
+<h2>Selecione uma cor</h2>
+<mat-nav-list>
+    <div class="row align-items-center" *ngFor="let c of cores">
+        <div class="col-1">
+            <div class="circle-color" [ngStyle]="{'background': c.cor }"></div>
+        </div>
+        <div class="col">
+            <span>{{ c.nome }}</span>
+        </div>
+    </div>
+</mat-nav-list>
